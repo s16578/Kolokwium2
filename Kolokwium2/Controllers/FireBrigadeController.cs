@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Kolokwium2.DTO.Request;
 using Kolokwium2.DTO.Response;
 using Kolokwium2.Services;
 using Microsoft.AspNetCore.Http;
@@ -43,7 +44,20 @@ namespace Kolokwium2.Controllers
             return Ok(response);
         }
 
+        [HttpPost]
+        [Route("/api/actions/1/fire-trucks")]
 
+        public IActionResult PostFireTrackToAction(FireTruckRequestDto firetruck)
+        {
+            try
+            {
+                _context.PostFireTruck(firetruck);
+            }catch(InvalidOperationException e)
+            {
+                return BadRequest(e);
+            }
+            return Ok();
+        }
 
     }
 }

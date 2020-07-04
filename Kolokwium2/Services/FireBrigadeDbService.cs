@@ -1,7 +1,10 @@
-﻿using Kolokwium2.DTO.Response;
+﻿using Kolokwium2.DTO.Request;
+using Kolokwium2.DTO.Response;
 using Kolokwium2.Models;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,7 +27,7 @@ namespace Kolokwium2.Services
                 throw new InvalidOperationException("Firefighter does not exist");
             }
 
-            ICollection<FirefightersResponseDto> response;
+            ICollection<FirefightersResponseDto> response = new Collection<FirefightersResponseDto>();
 
             //Firefighter firefighter = _context.Firefighters.Where(e => e.IdFirefighter == id).First();
 
@@ -64,5 +67,31 @@ namespace Kolokwium2.Services
             return response;
             
         }
-    }
+
+        public FireTruckPostResponseDto PostFireTruck(FireTruckRequestDto firetruck)
+        {
+            if(firetruck == null)
+            {
+                throw new InvalidOperationException("Firetruck cannot be null");
+            }
+
+            if(!(_context.FireTrucks.Any(e => e.IdFireTruck == firetruck.IdFireTruck)))
+            {
+                throw new InvalidOperationException("Firetruck does not exist");
+            }
+            if (!(_context.Actions.Any(a => a.IdAction == firetruck.IdAction)))
+            {
+                throw new InvalidOperationException("Action does not exist");
+            }
+            
+            var fireTruckCheck = _context.FireTrucks.Join()
+
+            //sprawdza czy istnieje jakikolwike wolny firetruck -> czy jest wolny / czy jest potrzebny specjalny sprzet
+
+            // 
+
+            // 
+
+            return null;
+        }
 }

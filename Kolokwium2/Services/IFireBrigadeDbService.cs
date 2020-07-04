@@ -1,4 +1,5 @@
-﻿using Kolokwium2.DTO.Response;
+﻿using Kolokwium2.DTO.Request;
+using Kolokwium2.DTO.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,7 @@ namespace Kolokwium2.Services
     public interface IFireBrigadeDbService
     {
         public ICollection<FirefightersResponseDto> GetActions(int id);
+
+        public FireTruckPostResponseDto PostFireTruck(FireTruckRequestDto firetruck);
     }
 }
