@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Kolokwium2.Models;
+using Kolokwium2.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace Kolokwium2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddScoped<>();
+            services.AddScoped<IFireBrigadeDbService, FireBrigadeDbService>();
             services.AddDbContext<FireBrigadeDbContext>(option =>
             option.UseSqlServer("Data Source=db-mssql.pjwstk.edu.pl;Initial Catalog=s16578;Integrated Security=True"));
             services.AddControllers();
